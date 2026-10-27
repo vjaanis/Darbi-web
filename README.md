@@ -2,6 +2,10 @@
 
 PHP un JavaScript lietotne darbu ievadei un datu apmaiņai ar Visual FoxPro.
 
+Administratora sadaļā **Klienti** (`?view=clients`) var ar izvēles rūtiņām noteikt, kurus klientus rādīt darba ievades izvēlnē. Lauks `client.act` ir `1` aktīviem un `0` paslēptiem klientiem. Izmaiņas saglabājas uzreiz. Klienti un iepriekšējie darbi netiek dzēsti; esoša darba rediģēšanai klientu joprojām var nolasīt pēc ID. VFP imports esošo `act` saglabā, jauni klienti pēc noklusējuma ir aktīvi.
+
+Pirms šīs funkcijas izvietošanas citā serverī vienreiz izpildīt `migrations/2026-10-27-client-act.sql`, tad atjaunināt `api.php`, `index.php`, `app/clients.php`, `assets/clients.js` un `views/clients.php`. Migrācija pievieno lauku un sākotnēji visus klientus atzīmē kā aktīvus. Raspberry Pi migrācija un izvietošana pabeigta 27.10.2026; atkārtoti tur migrāciju nepalaist.
+
 Pašreizējā versija: **1.1.1**. Versiju nosaka `app/version.php`, tā redzama pieteikšanās un darba ievades lapās. Izmaiņas aprakstītas `CHANGELOG.md`; Git izlaiduma atzīme ir `v1.1.1`.
 
 ## Saglabātās kopijas statuss

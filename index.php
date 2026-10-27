@@ -20,6 +20,11 @@ $csrf = Darbi\csrfToken();
 $overview = ($_GET['view'] ?? '') === 'jobs';
 $exports = ($_GET['view'] ?? '') === 'exports';
 $clientImport = ($_GET['view'] ?? '') === 'client-import';
+$clients = ($_GET['view'] ?? '') === 'clients';
+if ($clients && !$user['ir_admin']) {
+    http_response_code(403);
+    exit('Klientu pārvaldība pieejama tikai administratoram.');
+}
 if ($clientImport && !$user['ir_admin']) {
     http_response_code(403);
     exit('Klientu imports pieejams tikai administratoram.');
@@ -28,7 +33,7 @@ if ($exports && !$user['ir_admin']) {
     http_response_code(403);
     exit('Datu eksports pieejams tikai administratoram.');
 }
-$report = $overview || $exports || $clientImport;
+$report = $overview || $exports || $clientImport || $clients;
 ?>
 <!doctype html>
 <html lang="lv">
@@ -36,7 +41,7 @@ $report = $overview || $exports || $clientImport;
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="<?= htmlspecialchars($csrf, ENT_QUOTES, 'UTF-8') ?>">
-    <title>Darbi · <?= $clientImport ? 'Klientu imports' : ($exports ? 'Datu eksports' : ($overview ? 'Pārskats' : 'Darba forma')) ?></title>
+    <title>Darbi · <?= $clients ? 'Klienti' : ($clientImport ? 'Klientu imports' : ($exports ? 'Datu eksports' : ($overview ? 'Pārskats' : 'Darba forma'))) ?></title>
     <link rel="stylesheet" href="assets/style.css?v=20261021-calendar">
     <?php if ($exports): ?><link rel="stylesheet" href="assets/exports.css?v=20261021-export1"><?php endif; ?>
     <?php if ($clientImport): ?><link rel="stylesheet" href="assets/client-import.css?v=20261022-import1"><?php endif; ?>
@@ -49,7 +54,7 @@ $report = $overview || $exports || $clientImport;
             <a class="menu-item <?= $overview ? 'active' : '' ?>" href="?view=jobs">Pārskats</a>
             <?php if ($user['ir_admin']): ?><a class="menu-item <?= $exports ? 'active' : '' ?>" href="?view=exports">Datu eksports</a><?php endif; ?>
             <?php if ($user['ir_admin']): ?><a class="menu-item <?= $clientImport ? 'active' : '' ?>" href="?view=client-import">Klientu imports</a><?php endif; ?>
-            <button class="menu-item" type="button" disabled title="Vēl nav pieejams">Klienti</button>
+            <?php if ($user['ir_admin']): ?><a class="menu-item <?= $clients ? 'active' : '' ?>" href="?view=clients">Klienti</a><?php endif; ?>
             <button class="menu-item" type="button" disabled title="Vēl nav pieejams">Pakalpojumi</button>
             <button class="menu-item" type="button" disabled title="Vēl nav pieejams">Iestatījumi</button>
         </nav>
@@ -63,14 +68,16 @@ $report = $overview || $exports || $clientImport;
 
     <main>
         <div class="page-heading">
-            <h1 id="page-title"><?= $clientImport ? 'Klientu imports' : ($exports ? 'Datu eksports' : ($overview ? 'Mani darbi' : 'Jauns darbs')) ?></h1>
-            <span class="muted"><?= $clientImport ? 'Klientu reģistrs no VFP' : ($exports ? 'Visu autoru darbi' : ($overview ? 'Tikai mani darbi' : 'Darba ievade un labošana')) ?> · Darbinieks: <?= htmlspecialchars(trim($user['vards'] . ' ' . $user['uzvards']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></span>
+            <h1 id="page-title"><?= $clients ? 'Klienti' : ($clientImport ? 'Klientu imports' : ($exports ? 'Datu eksports' : ($overview ? 'Mani darbi' : 'Jauns darbs'))) ?></h1>
+            <span class="muted"><?= $clients ? 'Redzamība darba ievades izvēlnē' : ($clientImport ? 'Klientu reģistrs no VFP' : ($exports ? 'Visu autoru darbi' : ($overview ? 'Tikai mani darbi' : 'Darba ievade un labošana'))) ?> · Darbinieks: <?= htmlspecialchars(trim($user['vards'] . ' ' . $user['uzvards']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></span>
         </div>
         <div id="notice" role="status" aria-live="polite" hidden></div>
         <p id="loading" role="status">Ielādē datus…</p>
         <noscript>Darba ievadei ieslēdz JavaScript.</noscript>
 
-        <?php if ($clientImport): ?>
+        <?php if ($clients): ?>
+        <?php require __DIR__ . '/views/clients.php'; ?>
+        <?php elseif ($clientImport): ?>
         <?php require __DIR__ . '/views/client-import.php'; ?>
         <?php elseif ($exports): ?>
         <?php require __DIR__ . '/views/exports.php'; ?>
@@ -84,6 +91,6 @@ $report = $overview || $exports || $clientImport;
         <?php endif; ?>
     </main>
 
-    <script type="module" src="assets/<?= $clientImport ? 'client-import' : ($exports ? 'exports' : ($overview ? 'jobs' : 'app')) ?>.js?v=20261022-import1"></script>
+    <script type="module" src="assets/<?= $clients ? 'clients' : ($clientImport ? 'client-import' : ($exports ? 'exports' : ($overview ? 'jobs' : 'app'))) ?>.js?v=20261027-client-act"></script>
 </body>
 </html>

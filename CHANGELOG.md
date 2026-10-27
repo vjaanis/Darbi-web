@@ -1,5 +1,13 @@
 # Izmaiņu vēsture
 
+## Pēc 1.1.1 — 27.10.2026
+
+- Pievienots `client.act` ar sākotnējo un noklusēto vērtību `1`.
+- Administratoriem aktivizēta izvēlne **Klienti**, kur redzamību ievadē pārvalda ar izvēles rūtiņām.
+- Darba ievades atlase rāda tikai aktīvos klientus, saglabājot iepriekšējo darbu datus un iespēju nolasīt klientu pēc ID.
+- Izmaiņu saglabāšanu aizsargā administratora tiesības, POST un CSRF pārbaudes. VFP klientu imports esošo redzamības iestatījumu nepārraksta.
+- Izvietots un pārbaudīts Raspberry Pi; kompetence.lv šīs izmaiņas vēl nav izvietotas.
+
 ## 1.1.1 — 27.10.2026
 
 - Klientu izvēlnes vaicājumam noņemts 40 rezultātu ierobežojums. Tukšs meklēšanas lauks atgriež visus klientus.

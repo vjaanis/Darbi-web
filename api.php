@@ -24,6 +24,15 @@ try {
     $action = $_GET["action"] ?? "status";
 
     switch ($action) {
+        case 'admin_clients':
+            sendJson(listAdminClients($user));
+
+        case 'set_client_active':
+            requireClientsAdmin($user);
+            requirePost();
+            requireJsonRequest();
+            sendJson(setClientActive(readJsonBody(), $user));
+
         case 'preview_client_import':
             requireClientImportAdmin($user);
             requirePost();
