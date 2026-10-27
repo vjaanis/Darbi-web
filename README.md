@@ -12,6 +12,8 @@ Pirms šīs funkcijas izvietošanas citā serverī vienreiz izpildīt `migration
 
 Pašreizējā versija: **1.3.1**. Versiju nosaka `app/version.php`, tā redzama pieteikšanās, darba ievades un kontu lapās. Izmaiņas aprakstītas `CHANGELOG.md`; Git izlaiduma atzīme ir `v1.3.1`.
 
+Soli pa solim instrukcija kompetence.lv atjaunināšanai: [kompetence-1.3.1.lv.md](docs/kompetence-1.3.1.lv.md).
+
 ## Saglabātās kopijas statuss
 
 Repozitorija sākums ir 2026. gada 21.–22. oktobrī saglabātā avota kopija bez servera konfigurācijas un datiem. Tā nav pilna pašreizējā kompetence.lv servera rezerves kopija. Pirms izvietošanas salīdzināt ar aktuālajiem servera failiem.
