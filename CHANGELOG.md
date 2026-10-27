@@ -1,5 +1,12 @@
 # Izmaiņu vēsture
 
+## Pēc 1.4.1 — 27.10.2026
+
+- Darba ievadē apakšiedaļas izvēlne pārvietota zem pakalpojuma veida visā pakalpojumu bloka platumā.
+- Gari apakšiedaļu nosaukumi sarakstā dalās vairākās rindās, saraksts ritinās un atveras logā pieejamajā vietā.
+- Saglabāts sākotnējais select lauks un obligātās izvēles validācija. Peles un tastatūras izvēle nosūta to pašu apakšiedaļas vērtību un ierosina esošo mērvienību ielādi.
+- Pārbaudīts Raspberry Pi ar regulētās jomas garajiem ECHA/REACH nosaukumiem. Datu izmaiņas nav veiktas.
+
 ## 1.4.1 — 27.10.2026
 
 - Pārējās lietotnes sadaļās burtu izmēri palielināti par 2 px, saglabājot 23 px lapu virsrakstus un login izskatu. Pamatteksts 16 px, ievades lauki/izvēlne 15 px, kontu sadaļas pamatteksts 18 px.

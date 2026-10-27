@@ -1,4 +1,5 @@
 import { initializeHistoryChoice } from "./history-choice.js";
+import { initializeSectionChoice } from "./section-choice.js?v=20261027-section2";
 import { formatDate, parseDate, initializeDateFields } from './dates.js?v=20261021-calendar';
 import { request } from "./api.js?v=20261021-csrf";
 import { calculateAmount, unitDivisor } from "./calculation.js?v=20261021-quantity";
@@ -22,6 +23,7 @@ const state = {
     calculationRequest: 0,
     searchResults: new Map(),
 };
+let syncSectionChoice = () => {};
 
 let searchTimer;
 let calculationTimer;
@@ -383,6 +385,7 @@ async function saveJob(event) {
 }
 
 function initializeEvents() {
+    syncSectionChoice = initializeSectionChoice();
     initializeDateFields();
     initializeClientSearch();
     initializeHistoryChoice("parstv", "representatives");
@@ -437,6 +440,7 @@ async function loadEditingJob(number) {
     choose('darb_veids', job.darb_veids);
     await loadSections();
     choose('darb_tip1', job.darb_tip1);
+    syncSectionChoice();
     await loadUnits();
     choose('mervien', job.mervien);
     for (const id of ['parstv', 'diviz', 'darbnosauk', 'daudz', 'cena', 'atlaide', 'sak_dat', 'termins', 'g_dat', 'koment']) {

@@ -18,6 +18,8 @@ Pēc 1.3.1 ieviests kompakts pieteikšanās lapas izskats. Lai pārnestu tikai �
 
 Raspberry Pi pārējām sadaļām burtu izmēri palielināti par 2 px, izņemot esošos 23 px lapu virsrakstus; login nav mainīts. Šim vizuālajam labojumam uz kompetence.lv pārnesami `assets/style.css`, `assets/users.css`, `index.php` un `users.php`.
 
+Pēc 1.4.1 apakšiedaļas izvēlne darba ievadē pārvietota zem pakalpojuma veida un papildināta ar rindās dalītiem gariem nosaukumiem. Izvēle darbojas arī ar bulttaustiņiem, Home/End, Enter, Escape un meklēšanu, rakstot sākumburtus. Šim labojumam pārnesami `assets/style.css`, `assets/app.js`, jaunais `assets/section-choice.js` un `index.php`. Datubāzes izmaiņas nav vajadzīgas.
+
 ## Saglabātās kopijas statuss
 
 Repozitorija sākums ir 2026. gada 21.–22. oktobrī saglabātā avota kopija bez servera konfigurācijas un datiem. Tā nav pilna pašreizējā kompetence.lv servera rezerves kopija. Pirms izvietošanas salīdzināt ar aktuālajiem servera failiem.
