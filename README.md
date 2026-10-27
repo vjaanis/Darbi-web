@@ -2,6 +2,10 @@
 
 PHP un JavaScript lietotne darbu ievadei un datu apmaiņai ar Visual FoxPro.
 
+Administratora sadaļā **Pakalpojumi** (`?view=services`) var apskatīt, meklēt, pievienot, labot un dzēst `mnu_dati` ierakstus: valodu, veidu, apakšiedaļu un mērvienību. `nr` tiek piešķirts automātiski. Atsevišķām mērvienību rindām drīkst atstāt tukšu valodu vai veidu. Labojumi ietekmē turpmāko darba ievades atlasi; iepriekš saglabātos darbus nepārraksta. Dzēšanai ir konkrēta ieraksta apstiprinājums; novecojuša ieraksta labošana vai dzēšana tiek bloķēta.
+
+Pakalpojumu CRUD izvietošanai citā serverī atjaunināt `api.php`, `index.php`, `app/services.php`, `assets/services.js` un `views/services.php`. Tabulas struktūra nav mainīta; tai vajadzīgs esošais primārais lauks `nr` ar `AUTO_INCREMENT` un lietotnes datubāzes kontam jābūt `SELECT`, `INSERT`, `UPDATE`, `DELETE` tiesībām uz `mnu_dati`. Raspberry Pi izvietots un pārbaudīts 27.10.2026. kompetence.lv šī funkcija vēl nav izvietota.
+
 Administratora sadaļā **Klienti** (`?view=clients`) var ar izvēles rūtiņām noteikt, kurus klientus rādīt darba ievades izvēlnē. Lauks `client.act` ir `1` aktīviem un `0` paslēptiem klientiem. Izmaiņas saglabājas uzreiz. Klienti un iepriekšējie darbi netiek dzēsti; esoša darba rediģēšanai klientu joprojām var nolasīt pēc ID. VFP imports esošo `act` saglabā, jauni klienti pēc noklusējuma ir aktīvi.
 
 Pirms šīs funkcijas izvietošanas citā serverī vienreiz izpildīt `migrations/2026-10-27-client-act.sql`, tad atjaunināt `api.php`, `index.php`, `app/clients.php`, `assets/clients.js` un `views/clients.php`. Migrācija pievieno lauku un sākotnēji visus klientus atzīmē kā aktīvus. Raspberry Pi migrācija un izvietošana pabeigta 27.10.2026; atkārtoti tur migrāciju nepalaist.

@@ -1,5 +1,13 @@
 # Izmaiņu vēsture
 
+## Pēc 1.2.1 — 27.10.2026
+
+- Administratoriem aktivizēta izvēlne **Pakalpojumi** ar `mnu_dati` ierakstu apskati, meklēšanu, pievienošanu, labošanu un dzēšanu.
+- Lauku ierobežojumi atbilst tabulai: valoda 3, veids 50, apakšiedaļa 220 un mērvienība 50 rakstzīmes.
+- Saglabāta atsevišķu mērvienību rindu darbība ar tukšu valodu/veidu.
+- POST, CSRF un administratora pārbaudes aizsargā izmaiņas; ieraksta versija un transakcija novērš pa šo laiku mainītu datu pārrakstīšanu/dzēšanu.
+- Izvietots Raspberry Pi un pārbaudīts pagaidu tabulās; visi 86 īstie ieraksti saglabāti nemainīti. Tabulas migrācija nav vajadzīga.
+
 ## 1.2.1 — 27.10.2026
 
 - Pievienots `client.act` ar sākotnējo un noklusēto vērtību `1`.

@@ -15,6 +15,7 @@ require_once __DIR__ . "/app/http.php";
 require_once __DIR__ . "/app/auth.php";
 require_once __DIR__ . "/app/exports.php";
 require_once __DIR__ . "/app/client-import.php";
+require_once __DIR__ . "/app/services.php";
 
 try {
     $user = currentUser();
@@ -24,6 +25,19 @@ try {
     $action = $_GET["action"] ?? "status";
 
     switch ($action) {
+        case 'admin_services':
+            sendJson(listAdminServices($user));
+
+        case 'create_service':
+        case 'update_service':
+        case 'delete_service':
+            requireServicesAdmin($user);
+            requirePost();
+            requireJsonRequest();
+            $input = readJsonBody();
+            if ($action === 'create_service') sendJson(createService($input, $user), 201);
+            sendJson(changeService($input, $user, $action === 'delete_service'));
+
         case 'admin_clients':
             sendJson(listAdminClients($user));
 
@@ -151,7 +165,7 @@ try {
         default:
             sendJson(["error" => "Darbība nav atrasta."], 404);
     }
-} catch (ExportConflict | ClientImportConflict $error) {
+} catch (ExportConflict | ClientImportConflict | ServiceConflict $error) {
     sendJson(['error' => $error->getMessage()], 409);
 } catch (\InvalidArgumentException $error) {
     sendJson(["error" => $error->getMessage()], 422);
