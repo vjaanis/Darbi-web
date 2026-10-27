@@ -1,12 +1,13 @@
 # Izmaiņu vēsture
 
-## Pēc 1.4.2 — 27.10.2026
+## 1.4.3 — 27.10.2026
 
 - Darbu pārskatā blakus **Labot** un **Dzēst** pievienota darbība **Kopēt**.
 - Kopēšana aizpilda jauna darba formu ar klientu, pakalpojumu, apakšiedaļu, mērvienību, aprakstu, pārstāvi, divīziju, daudzumu, cenu, atlaidi un komentāru.
 - Jaunais sākuma datums ir šodiena Rīgas laika joslā; termiņš un pabeigšanas datums tiek notīrīti, **Pabeigts** nav atzīmēts. Summa tiek pārrēķināta.
 - Kopija tiek saglabāta kā jauns ieraksts tikai pēc apstiprināšanas; sākotnējais darbs netiek mainīts. Avota lasīšanai saglabājas esošā savu neeksportēto darbu piekļuves pārbaude.
 - Pārbaudīta kopijas atvēršana/saglabāšana un parastās labošanas datumu saglabāšana izolētā pārlūka plūsmā; pievienoti kopējamo datu testi.
+- Lietotnes versija GitHub un Raspberry Pi atjaunināta uz `1.4.3`.
 
 ## 1.4.2 — 27.10.2026
 

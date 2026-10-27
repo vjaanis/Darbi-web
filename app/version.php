@@ -3,4 +3,4 @@ declare(strict_types=1);
 
 namespace Darbi;
 
-const APP_VERSION = '1.4.2';
+const APP_VERSION = '1.4.3';
