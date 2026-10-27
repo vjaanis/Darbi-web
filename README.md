@@ -1,4 +1,4 @@
-# Darbi-web 1.3.1
+# Darbi-web 1.4.1
 
 PHP un JavaScript lietotne darbu ievadei un datu apmaiņai ar Visual FoxPro.
 
@@ -10,7 +10,7 @@ Administratora sadaļā **Klienti** (`?view=clients`) var ar izvēles rūtiņām
 
 Pirms šīs funkcijas izvietošanas citā serverī vienreiz izpildīt `migrations/2026-10-27-client-act.sql`, tad atjaunināt `api.php`, `index.php`, `app/clients.php`, `assets/clients.js` un `views/clients.php`. Migrācija pievieno lauku un sākotnēji visus klientus atzīmē kā aktīvus. Raspberry Pi migrācija un izvietošana pabeigta 27.10.2026; atkārtoti tur migrāciju nepalaist.
 
-Pašreizējā versija: **1.3.1**. Versiju nosaka `app/version.php`, tā redzama pieteikšanās, darba ievades un kontu lapās. Izmaiņas aprakstītas `CHANGELOG.md`; Git izlaiduma atzīme ir `v1.3.1`.
+Pašreizējā versija: **1.4.1**. Versiju nosaka `app/version.php`, tā redzama pieteikšanās, darba ievades un kontu lapās. Izmaiņas aprakstītas `CHANGELOG.md`; Git izlaiduma atzīme ir `v1.4.1`.
 
 Soli pa solim instrukcija kompetence.lv atjaunināšanai: [kompetence-1.3.1.lv.md](docs/kompetence-1.3.1.lv.md).
 
