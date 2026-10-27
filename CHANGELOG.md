@@ -1,11 +1,12 @@
 # Izmaiņu vēsture
 
-## Pēc 1.4.1 — 27.10.2026
+## 1.4.2 — 27.10.2026
 
 - Darba ievadē apakšiedaļas izvēlne pārvietota zem pakalpojuma veida visā pakalpojumu bloka platumā.
 - Gari apakšiedaļu nosaukumi sarakstā dalās vairākās rindās, saraksts ritinās un atveras logā pieejamajā vietā.
 - Saglabāts sākotnējais select lauks un obligātās izvēles validācija. Peles un tastatūras izvēle nosūta to pašu apakšiedaļas vērtību un ierosina esošo mērvienību ielādi.
 - Pārbaudīts Raspberry Pi ar regulētās jomas garajiem ECHA/REACH nosaukumiem. Datu izmaiņas nav veiktas.
+- Lietotnes versija GitHub un Raspberry Pi atjaunināta uz `1.4.2`.
 
 ## 1.4.1 — 27.10.2026
 
