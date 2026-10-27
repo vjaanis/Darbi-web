@@ -14,6 +14,8 @@ Pašreizējā versija: **1.3.1**. Versiju nosaka `app/version.php`, tā redzama 
 
 Soli pa solim instrukcija kompetence.lv atjaunināšanai: [kompetence-1.3.1.lv.md](docs/kompetence-1.3.1.lv.md).
 
+Pēc 1.3.1 ieviests kompakts pieteikšanās lapas izskats. Lai pārnestu tikai šo vizuālo labojumu uz kompetence.lv, kopēt `login.php` un `assets/login.css`. Datubāzes izmaiņas nav vajadzīgas. Lauku platums ir aptuveni 30 simboli, nevis jauns ievades garuma ierobežojums.
+
 ## Saglabātās kopijas statuss
 
 Repozitorija sākums ir 2026. gada 21.–22. oktobrī saglabātā avota kopija bez servera konfigurācijas un datiem. Tā nav pilna pašreizējā kompetence.lv servera rezerves kopija. Pirms izvietošanas salīdzināt ar aktuālajiem servera failiem.

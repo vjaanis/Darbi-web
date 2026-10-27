@@ -1,5 +1,12 @@
 # Izmaiņu vēsture
 
+## Pēc 1.3.1 — 27.10.2026
+
+- Pieteikšanās ievades lauki samazināti līdz aptuveni 30 simbolu vizuālajam platumam, saglabājot garāku vērtību ievadi.
+- Pieteikšanās lapa pārveidota par kompaktu centrētu formu ar atsevišķu `assets/login.css`, pielāgojumu šauriem ekrāniem un redzamu versijas numuru.
+- Pieteikšanās PHP loģika un lietotāju kontu lapas stili saglabāti nemainīti.
+- Izvietots Raspberry Pi; kompetence.lv pārnešanai vajadzīgi `login.php` un `assets/login.css`.
+
 ## 1.3.1 — 27.10.2026
 
 - Administratoriem aktivizēta izvēlne **Pakalpojumi** ar `mnu_dati` ierakstu apskati, meklēšanu, pievienošanu, labošanu un dzēšanu.

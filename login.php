@@ -109,19 +109,27 @@ try {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Darbi · Pieteikšanās</title>
-    <link rel="stylesheet" href="assets/users.css">
+    <link rel="stylesheet" href="assets/login.css?v=20261027-login">
 </head>
 <body>
-<main>
-    <h1>Darbi <small>v<?= Darbi\APP_VERSION ?></small></h1>
-    <p>Piesakies ar savu lietotājvārdu un paroli.</p>
+<main class="login-shell">
+    <section class="login-card" aria-labelledby="login-title">
+    <header class="login-header">
+        <span class="login-mark" aria-hidden="true">D</span>
+        <h1 id="login-title">Darbi</h1>
+        <p>Pieslēdzies savai darba vietai.</p>
+    </header>
     <?php if ($errorMessage !== ''): ?><p class="notice" role="alert"><?= htmlspecialchars($errorMessage, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p><?php endif; ?>
-    <form method="post" class="card">
+    <form method="post" class="login-form">
         <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf, ENT_QUOTES, 'UTF-8') ?>">
-        <label>Lietotājvārds <input name="username" autocomplete="username" required autofocus></label>
-        <label>Parole <input name="password" type="password" autocomplete="current-password" required></label>
+        <label for="login-username">Lietotājvārds</label>
+        <input id="login-username" name="username" size="30" autocomplete="username" autocapitalize="none" spellcheck="false" required autofocus>
+        <label for="login-password">Parole</label>
+        <input id="login-password" name="password" type="password" size="30" autocomplete="current-password" required>
         <button type="submit">Pieteikties</button>
     </form>
+    <footer class="login-footer">Darbi <span>v<?= Darbi\APP_VERSION ?></span></footer>
+    </section>
 </main>
 </body>
 </html>
