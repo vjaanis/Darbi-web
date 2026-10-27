@@ -1,6 +1,8 @@
-# Darbi-web
+# Darbi-web 1.1.1
 
 PHP un JavaScript lietotne darbu ievadei un datu apmaiņai ar Visual FoxPro.
+
+Pašreizējā versija: **1.1.1**. Versiju nosaka `app/version.php`, tā redzama pieteikšanās un darba ievades lapās. Izmaiņas aprakstītas `CHANGELOG.md`; Git izlaiduma atzīme ir `v1.1.1`.
 
 ## Saglabātās kopijas statuss
 

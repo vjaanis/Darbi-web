@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/app/version.php';
 require_once __DIR__ . '/app/auth.php';
 try {
     $user = Darbi\currentUser();
@@ -42,7 +43,7 @@ $report = $overview || $exports || $clientImport;
 </head>
 <body>
     <header class="topbar">
-        <a class="brand" href="./"><span class="brand-icon">D</span>Darbi</a>
+        <a class="brand" href="./"><span class="brand-icon">D</span>Darbi <small>v<?= Darbi\APP_VERSION ?></small></a>
         <nav class="main-menu" aria-label="Galvenā izvēlne">
             <a class="menu-item <?= !$report ? 'active' : '' ?>" href="./">Jauns darbs</a>
             <a class="menu-item <?= $overview ? 'active' : '' ?>" href="?view=jobs">Pārskats</a>

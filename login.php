@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/app/auth.php';
+require_once __DIR__ . '/app/version.php';
 
 use function Darbi\clearUserIdentity;
 use function Darbi\csrfToken;
@@ -112,7 +113,7 @@ try {
 </head>
 <body>
 <main>
-    <h1>Darbi</h1>
+    <h1>Darbi <small>v<?= Darbi\APP_VERSION ?></small></h1>
     <p>Piesakies ar savu lietotājvārdu un paroli.</p>
     <?php if ($errorMessage !== ''): ?><p class="notice" role="alert"><?= htmlspecialchars($errorMessage, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p><?php endif; ?>
     <form method="post" class="card">

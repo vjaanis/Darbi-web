@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/app/database.php';
+require_once __DIR__ . '/app/version.php';
 
 header('Content-Type: text/html; charset=utf-8');
 header('Cache-Control: no-store');
@@ -203,7 +204,7 @@ try {
 </head>
 <body>
 <main>
-    <h1>Lietotāju konti</h1>
+    <h1>Lietotāju konti <small>v<?= Darbi\APP_VERSION ?></small></h1>
     <?php if ($message !== ''): ?><p class="notice" role="status"><?= h($message) ?></p><?php endif; ?>
 
     <?php if ($adminId !== 0): ?>
