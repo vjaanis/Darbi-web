@@ -98,6 +98,6 @@ $report = $overview || $exports || $clientImport || $clients || $services;
         <?php endif; ?>
     </main>
 
-    <script type="module" src="assets/<?= $services ? 'services' : ($clients ? 'clients' : ($clientImport ? 'client-import' : ($exports ? 'exports' : ($overview ? 'jobs' : 'app')))) ?>.js?v=20261027-section-choice2"></script>
+    <script type="module" src="assets/<?= $services ? 'services' : ($clients ? 'clients' : ($clientImport ? 'client-import' : ($exports ? 'exports' : ($overview ? 'jobs' : 'app')))) ?>.js?v=20261027-job-copy"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 import { initializeHistoryChoice } from "./history-choice.js";
 import { initializeSectionChoice } from "./section-choice.js?v=20261027-section2";
+import { copyJobValues } from "./job-copy.js?v=20261027-copy";
 import { formatDate, parseDate, initializeDateFields } from './dates.js?v=20261021-calendar';
 import { request } from "./api.js?v=20261021-csrf";
 import { calculateAmount, unitDivisor } from "./calculation.js?v=20261021-quantity";
@@ -423,10 +424,10 @@ function initializeEvents() {
     });
 }
 
-async function loadEditingJob(number) {
+async function loadEditingJob(number, copying = false) {
     loadingEdit = true;
     const detail = await request('job', { nr: number });
-    const job = detail.job;
+    const job = copying ? copyJobValues(detail.job, rigaToday()) : detail.job;
     await selectClient(detail.client);
     const choose = (id, value) => {
         const select = element(id);
@@ -451,13 +452,14 @@ async function loadEditingJob(number) {
     element('g_dat').hidden = !element('gat').checked;
     element('g_dat').required = element('gat').checked;
     element('g_dat').disabled = !element('gat').checked;
-    editing = { nr: job.nr, version: detail.version };
-    element('page-title').textContent = 'Labot darbu #' + job.nr;
-    element('reset-job').textContent = 'Atcelt labošanu';
+    editing = copying ? null : { nr: job.nr, version: detail.version };
+    element('page-title').textContent = copying ? 'Kopēt darbu #' + detail.job.nr : 'Labot darbu #' + job.nr;
+    element('reset-job').textContent = copying ? 'Atcelt kopēšanu' : 'Atcelt labošanu';
     setSaving(false);
     updateAmountPreview();
-    dirty = false;
+    dirty = copying;
     loadingEdit = false;
+    if (copying) showNotice('Darba #' + detail.job.nr + ' informācija nokopēta ar jauniem datumiem. Pārbaudi un saglabā kā jaunu darbu.');
 }
 
 async function initializePage() {
@@ -474,9 +476,10 @@ async function initializePage() {
     element('g_dat').disabled = true;
     setClientReady(false);
     const parameters = new URLSearchParams(location.search);
-    if (parameters.has('job')) {
+    if (parameters.has('job') && parameters.has('copy')) throw new Error('Izvēlies darba labošanu vai kopēšanu.');
+    if (parameters.has('job') || parameters.has('copy')) {
         element('job-fields').disabled = true;
-        await loadEditingJob(parameters.get('job'));
+        await loadEditingJob(parameters.get(parameters.has('copy') ? 'copy' : 'job'), parameters.has('copy'));
     }
     element("loading").hidden = true;
     element("workspace").hidden = false;

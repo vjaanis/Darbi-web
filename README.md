@@ -2,6 +2,10 @@
 
 PHP un JavaScript lietotne darbu ievadei un datu apmaiņai ar Visual FoxPro.
 
+Darbu pārskatā pie **Labot** un **Dzēst** ir arī **Kopēt**. Kopēt var savus pārskatā pieejamos darbus. Kopija atver jauna darba formu ar pārnestu informāciju, šodienas sākuma datumu, tukšu termiņu un neatzīmētu pabeigšanu. Jauns ieraksts rodas tikai pēc saglabāšanas; avota darbs netiek mainīts. Kopēšanas labojumam uz kompetence.lv pārnesami `assets/jobs.js`, `assets/app.js`, jaunais `assets/job-copy.js` un `index.php`; datubāzes migrācija nav vajadzīga.
+
+Kopēšanas datu pārbaudes: `node --test tests/job-copy.test.mjs`.
+
 Administratora sadaļā **Pakalpojumi** (`?view=services`) var apskatīt, meklēt, pievienot, labot un dzēst `mnu_dati` ierakstus: valodu, veidu, apakšiedaļu un mērvienību. `nr` tiek piešķirts automātiski. Atsevišķām mērvienību rindām drīkst atstāt tukšu valodu vai veidu. Labojumi ietekmē turpmāko darba ievades atlasi; iepriekš saglabātos darbus nepārraksta. Dzēšanai ir konkrēta ieraksta apstiprinājums; novecojuša ieraksta labošana vai dzēšana tiek bloķēta.
 
 Pakalpojumu CRUD izvietošanai citā serverī atjaunināt `api.php`, `index.php`, `app/services.php`, `assets/services.js` un `views/services.php`. Tabulas struktūra nav mainīta; tai vajadzīgs esošais primārais lauks `nr` ar `AUTO_INCREMENT` un lietotnes datubāzes kontam jābūt `SELECT`, `INSERT`, `UPDATE`, `DELETE` tiesībām uz `mnu_dati`. Raspberry Pi izvietots un pārbaudīts 27.10.2026. kompetence.lv šī funkcija vēl nav izvietota.

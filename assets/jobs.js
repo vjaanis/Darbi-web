@@ -35,13 +35,18 @@ async function loadJobs() {
             edit.textContent = 'Labot';
             edit.className = 'text-button';
             edit.setAttribute('aria-label', 'Labot darbu #' + job.nr);
+            const copy = document.createElement('a');
+            copy.href = '?copy=' + encodeURIComponent(job.nr);
+            copy.textContent = 'Kopēt';
+            copy.className = 'text-button';
+            copy.setAttribute('aria-label', 'Kopēt darbu #' + job.nr);
             const remove = document.createElement('button');
             remove.type = 'button';
             remove.className = 'text-button danger';
             remove.textContent = 'Dzēst';
             remove.setAttribute('aria-label', 'Dzēst darbu #' + job.nr);
             remove.addEventListener('click', () => deleteJob(job, remove));
-            actions.append(edit, document.createTextNode(' '), remove);
+            actions.append(edit, document.createTextNode(' '), copy, document.createTextNode(' '), remove);
             row.append(actions);
             element('jobs-rows').append(row);
         }
