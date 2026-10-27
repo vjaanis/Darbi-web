@@ -200,7 +200,7 @@ try {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Darbi · Lietotāju konti</title>
-    <link rel="stylesheet" href="assets/users.css">
+    <link rel="stylesheet" href="assets/users.css?v=20261027-fonts2">
 </head>
 <body>
 <main>

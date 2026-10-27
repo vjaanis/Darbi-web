@@ -2,6 +2,9 @@
 
 ## Pēc 1.3.1 — 27.10.2026
 
+- Pārējās lietotnes sadaļās burtu izmēri palielināti par 2 px, saglabājot 23 px lapu virsrakstus un login izskatu. Pamatteksts 16 px, ievades lauki/izvēlne 15 px, kontu sadaļas pamatteksts 18 px.
+- Atjauninātas stilu kešatmiņas versijas `index.php` un `users.php`.
+
 - Pieteikšanās ievades lauki samazināti līdz aptuveni 30 simbolu vizuālajam platumam, saglabājot garāku vērtību ievadi.
 - Pieteikšanās lapa pārveidota par kompaktu centrētu formu ar atsevišķu `assets/login.css`, pielāgojumu šauriem ekrāniem un redzamu versijas numuru.
 - Pieteikšanās PHP loģika un lietotāju kontu lapas stili saglabāti nemainīti.

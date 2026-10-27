@@ -16,6 +16,8 @@ Soli pa solim instrukcija kompetence.lv atjaunināšanai: [kompetence-1.3.1.lv.m
 
 Pēc 1.3.1 ieviests kompakts pieteikšanās lapas izskats. Lai pārnestu tikai šo vizuālo labojumu uz kompetence.lv, kopēt `login.php` un `assets/login.css`. Datubāzes izmaiņas nav vajadzīgas. Lauku platums ir aptuveni 30 simboli, nevis jauns ievades garuma ierobežojums.
 
+Raspberry Pi pārējām sadaļām burtu izmēri palielināti par 2 px, izņemot esošos 23 px lapu virsrakstus; login nav mainīts. Šim vizuālajam labojumam uz kompetence.lv pārnesami `assets/style.css`, `assets/users.css`, `index.php` un `users.php`.
+
 ## Saglabātās kopijas statuss
 
 Repozitorija sākums ir 2026. gada 21.–22. oktobrī saglabātā avota kopija bez servera konfigurācijas un datiem. Tā nav pilna pašreizējā kompetence.lv servera rezerves kopija. Pirms izvietošanas salīdzināt ar aktuālajiem servera failiem.

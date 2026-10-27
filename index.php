@@ -47,7 +47,7 @@ $report = $overview || $exports || $clientImport || $clients || $services;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="<?= htmlspecialchars($csrf, ENT_QUOTES, 'UTF-8') ?>">
     <title>Darbi · <?= $services ? 'Pakalpojumi' : ($clients ? 'Klienti' : ($clientImport ? 'Klientu imports' : ($exports ? 'Datu eksports' : ($overview ? 'Pārskats' : 'Darba forma')))) ?></title>
-    <link rel="stylesheet" href="assets/style.css?v=20261021-calendar">
+    <link rel="stylesheet" href="assets/style.css?v=20261027-fonts2">
     <?php if ($exports): ?><link rel="stylesheet" href="assets/exports.css?v=20261021-export1"><?php endif; ?>
     <?php if ($clientImport): ?><link rel="stylesheet" href="assets/client-import.css?v=20261022-import1"><?php endif; ?>
 </head>
