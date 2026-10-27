@@ -1,0 +1,6 @@
+.import-links { display:flex; flex-wrap:wrap; gap:20px; }
+.import-counts { display:flex; flex-wrap:wrap; gap:12px; margin:16px 0; }
+.import-counts span { background:#edf3ff; border-radius:5px; padding:12px 16px; }
+.import-history { margin-top:24px; }
+#client-import-preview { margin-top:26px; padding-top:12px; border-top:1px solid var(--line); }
+#client-import-file { max-width:100%; }

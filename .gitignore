@@ -1,0 +1,37 @@
+# Konfigurācija un noslēpumi
+config.php
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Lietotāju dati un eksporta faili
+*.csv
+*.dbf
+*.DBF
+*.fpt
+*.FPT
+*.cdx
+*.CDX
+*.sql.gz
+*.sql.zip
+*.dump
+*.zip
+*.bak
+*.log
+error_log
+backup/
+backups/
+exports/
+uploads/
+storage/
+sessions/
+
+# Lokālie rīki un kompilētie VFP faili
+*.fxp
+*.FXP
+node_modules/
+vendor/
+.DS_Store
+Thumbs.db

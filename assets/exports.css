@@ -1,0 +1,11 @@
+.export-filters { display: flex; flex-wrap: wrap; gap: 14px; align-items: end; }
+.export-filters label { display: grid; gap: 6px; min-width: 190px; }
+.export-filters select, .export-filters input { width: 100%; padding: 9px; border: 1px solid var(--line); border-radius: 5px; background: white; }
+.export-search { flex: 1; }
+.export-history { margin-top: 22px; }
+.exports-table input[type=checkbox] { width: 18px; height: 18px; cursor: pointer; }
+.exports-table td:nth-child(5) { min-width: 140px; }
+.exports-table td:nth-child(6) { min-width: 240px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.exports-table td:last-child { white-space: normal; min-width: 180px; }
+.exports-table tr:has(input:checked) { background: #edf3ff; }
+.export-job-numbers { max-width: 220px; overflow-wrap: anywhere; }

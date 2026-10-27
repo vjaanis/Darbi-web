@@ -1,0 +1,579 @@
+:root {
+    --ink: #203347;
+    --muted: #6f7f90;
+    --line: #dce3eb;
+    --accent: #3567df;
+    --background: #f3f5f8;
+}
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--ink);
+    font:
+        14px system-ui,
+        sans-serif;
+}
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+button {
+    cursor: pointer;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+[hidden] {
+    display: none !important;
+}
+
+/* Horizontālā izvēlne. Rezervētās sadaļas ir apzināti neaktīvas. */
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    min-height: 54px;
+    padding: 0 28px;
+    background: #152a3e;
+    color: #d7e0ea;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+}
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--accent);
+    font-size: 16px;
+}
+.main-menu {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+.menu-item {
+    border: 0;
+    border-radius: 5px;
+    padding: 9px 14px;
+    background: transparent;
+    color: inherit;
+    white-space: nowrap;
+    font-size: 13px;
+}
+.menu-item.active,
+.menu-item:not(:disabled):hover {
+    background: #2c435c;
+    color: white;
+}
+.menu-item:disabled {
+    color: #8293a6;
+    cursor: default;
+}
+.date {
+    margin-left: auto;
+    white-space: nowrap;
+    font-size: 12px;
+    color: #a7b7c8;
+}
+
+/* Full HD ekrānā izmantojam divas kolonnu pāru rindas, nevis garu formu. */
+main {
+    max-width: 1560px;
+    margin: 0 auto;
+    padding: 16px 24px 20px;
+}
+.page-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+h1 {
+    margin: 0;
+    font-size: 23px;
+    line-height: 1.3;
+}
+.muted {
+    color: var(--muted);
+    font-size: 12px;
+}
+.job-grid {
+    display: grid;
+    grid-template-columns: minmax(400px, 0.95fr) minmax(580px, 1.35fr);
+    gap: 12px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+}
+.card {
+    min-width: 0;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 24px;
+    margin-bottom: 10px;
+}
+h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 650;
+}
+.text-button {
+    background: none;
+    border: 0;
+    color: var(--accent);
+    padding: 3px 0;
+    font-size: 12px;
+}
+.grid {
+    display: grid;
+    gap: 12px;
+}
+.two {
+    grid-template-columns: 1fr 1fr;
+}
+.service-choices {
+    grid-template-columns: 0.9fr 1.4fr;
+}
+.field {
+    position: relative;
+    min-width: 0;
+    margin-bottom: 10px;
+}
+.card > .field:last-child,
+.grid .field {
+    margin-bottom: 0;
+}
+.card > .grid {
+    margin-bottom: 10px;
+}
+.card > .grid:last-child {
+    margin-bottom: 0;
+}
+label {
+    display: block;
+    margin-bottom: 4px;
+    color: #53667a;
+    font-size: 12px;
+    font-weight: 500;
+}
+input:not([type="checkbox"]),
+select,
+textarea {
+    width: 100%;
+    min-height: 32px;
+    padding: 5px 8px;
+    border: 1px solid #ccd6e1;
+    border-radius: 5px;
+    background: white;
+    color: var(--ink);
+    font-size: 13px;
+}
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid #adc6fa;
+    outline-offset: 0;
+    border-color: #7598e6;
+}
+input::placeholder,
+textarea::placeholder {
+    color: #99a5b3;
+}
+select:disabled {
+    background: #f6f8fb;
+    color: #8c98a6;
+}
+textarea {
+    height: 52px;
+    resize: vertical;
+    line-height: 1.4;
+}
+
+/* Saraksts ir piesaistīts meklēšanas lauka kreisajai un labajai malai. */
+#client-search-field {
+    position: relative;
+    z-index: 10;
+}
+select.client-results {
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 192px;
+    z-index: 50;
+    padding: 4px;
+    background: white;
+    box-shadow: 0 8px 20px #19374c26;
+}
+.client-results option {
+    padding: 6px 8px;
+}
+.client-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+    min-height: 61px;
+    margin: 10px 0 12px;
+    padding: 9px 10px;
+    background: #f5f8fc;
+    border-radius: 5px;
+    color: var(--muted);
+    font-size: 12px;
+}
+.client-details strong {
+    width: 100%;
+    color: var(--ink);
+    font-size: 13px;
+}
+.language {
+    margin-left: auto;
+    background: #e4ecfb;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #4c6da8;
+}
+
+/* Skaitļiem un datumiem ir to vērtībām atbilstoši platumi. */
+.amount-fields {
+    display: grid;
+    grid-template-columns: 100px 125px 90px minmax(105px, 1fr);
+    gap: 12px;
+    align-items: start;
+}
+.amount-output output {
+    display: block;
+    min-height: 32px;
+    padding: 5px 0;
+    font-weight: 700;
+    font-size: 17px;
+    white-space: nowrap;
+}
+.calculation-note {
+    margin: 4px 0 0;
+    min-height: 17px;
+    color: var(--muted);
+    font-size: 11px;
+}
+.date-fields {
+    display: grid;
+    grid-template-columns: 145px 145px minmax(145px, 1fr);
+    gap: 14px;
+    align-items: start;
+    margin-bottom: 10px;
+}
+.completion-field {
+    padding-top: 1px;
+}
+.check {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 18px;
+    margin: 0 0 4px;
+    font-size: 12px;
+}
+.check input {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--accent);
+}
+.completion-field .date-input {
+    width: 145px;
+}
+.date-control { position: relative; width: 145px; }
+.date-control:has(.date-input[hidden]) { display: none; }
+.date-control .date-input { width: 100%; padding-right: 34px; }
+.calendar-icon {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 32px;
+    display: grid; place-items: center; color: var(--accent); pointer-events: none;
+    border-left: 1px solid var(--line); font-size: 22px;
+}
+.date-control .calendar-picker {
+    position: absolute; right: 0; top: 0; width: 32px; height: 100%;
+    opacity: 0; padding: 0; border: 0; cursor: pointer; min-width: 0;
+}
+.calendar-picker::-webkit-calendar-picker-indicator {
+    position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; cursor: pointer;
+}
+.date-control:has(.calendar-picker:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.comment-field {
+    margin: 0;
+}
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 12px;
+}
+.primary,
+.secondary {
+    min-height: 34px;
+    border-radius: 5px;
+    padding: 7px 16px;
+    font-size: 13px;
+}
+.primary {
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: white;
+}
+.primary:hover {
+    background: #2856c2;
+}
+.secondary {
+    background: white;
+    border: 1px solid #cdd7e2;
+    color: #53667a;
+}
+button:disabled:not(.menu-item) {
+    opacity: 0.6;
+    cursor: wait;
+}
+#notice {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border: 1px solid #bddfcf;
+    border-radius: 5px;
+    background: #eaf7f0;
+    color: #286b4b;
+    font-size: 13px;
+}
+#notice.error {
+    border-color: #efc7c0;
+    background: #fff0ee;
+    color: #a44237;
+}
+
+/* Jauna klienta logs vienmēr ir centrēts ekrānā. */
+dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(840px, calc(100vw - 32px));
+    max-height: calc(100dvh - 40px);
+    overflow: auto;
+    border: 0;
+    border-radius: 10px;
+    padding: 20px;
+    color: var(--ink);
+    box-shadow: 0 20px 70px #10283c44;
+}
+dialog::backdrop {
+    background: #142b4177;
+}
+.dialog-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.dialog-heading h2 {
+    font-size: 20px;
+    margin-top: 4px;
+}
+.eyebrow {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+.close-button {
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    background: #eef2f7;
+    color: #637488;
+    font-size: 22px;
+}
+.plain-fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+}
+dialog .plain-fieldset > .grid:first-child {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+dialog .field {
+    margin-bottom: 0;
+}
+dialog .plain-fieldset > .grid + .grid {
+    margin-top: 12px;
+}
+#client-error {
+    margin: 10px 0;
+    color: #ad4438;
+    font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+    .topbar {
+        padding: 8px 16px;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    .date {
+        display: none;
+    }
+    main {
+        padding: 14px 16px;
+    }
+    .job-grid {
+        grid-template-columns: minmax(320px, 0.9fr) minmax(470px, 1.2fr);
+    }
+    .amount-fields {
+        grid-template-columns: 85px 105px 75px minmax(90px, 1fr);
+        gap: 8px;
+    }
+    .date-fields {
+        gap: 10px;
+        grid-template-columns: 135px 135px minmax(135px, 1fr);
+    }
+}
+@media (max-width: 860px) {
+    .job-grid {
+        grid-template-columns: 1fr;
+    }
+    .main-menu {
+        gap: 2px;
+    }
+    .menu-item {
+        padding: 7px 9px;
+    }
+    .page-heading .muted {
+        display: none;
+    }
+    .client-card {
+        order: 1;
+    }
+    .service-card {
+        order: 2;
+    }
+    .amount-card {
+        order: 3;
+    }
+    .dates-card {
+        order: 4;
+    }
+}
+@media (max-width: 540px) {
+    .topbar {
+        gap: 8px;
+    }
+    .brand {
+        font-size: 18px;
+    }
+    .main-menu {
+        width: 100%;
+    }
+    main {
+        padding: 12px;
+    }
+    .card {
+        padding: 12px;
+    }
+    .two,
+    .service-choices {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    .amount-fields {
+        grid-template-columns: 1fr 1fr;
+    }
+    .date-fields {
+        grid-template-columns: 1fr 1fr;
+    }
+    .completion-field {
+        grid-column: 1 / -1;
+    }
+    dialog .plain-fieldset > .grid:first-child {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Pārējās iedaļas piedalās režģī, bet sākumā ir neaktīvas. */
+.dependent-fields {
+    display: contents;
+}
+input:disabled,
+textarea:disabled {
+    background: #f6f8fb;
+    color: #8c98a6;
+}
+
+/* Rediģējami vēstures saraksti ar vienmēr redzamu atvēršanas bultu. */
+.history-choice {
+    position: relative;
+}
+.history-choice.is-open {
+    z-index: 30;
+}
+.history-choice input {
+    padding-right: 32px;
+}
+.history-toggle {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 28px;
+    height: 30px;
+    border: 0;
+    border-left: 1px solid var(--line);
+    border-radius: 0 4px 4px 0;
+    background: #f3f6fa;
+    color: #53667a;
+}
+.history-toggle:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+select.history-options {
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 0;
+    width: 100%;
+    height: 180px;
+    padding: 4px;
+    background: white;
+    box-shadow: 0 8px 20px #19374c26;
+}
+.history-options option {
+    padding: 5px 8px;
+}
+
+/* Darbu pārskats */
+.report-toolbar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 12px 0; }
+.report-toolbar input { flex: 1; min-width: 180px; }
+.report-scroll { overflow-x: auto; }
+.jobs-table { border-collapse: collapse; width: 100%; text-align: left; }
+.jobs-table th, .jobs-table td { border-bottom: 1px solid var(--line); padding: 12px 10px; vertical-align: top; }
+.jobs-table th { white-space: nowrap; }
+.jobs-table td:nth-child(5) { min-width: 220px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.jobs-table td:last-child { white-space: nowrap; }
+.danger { color: #a32b30; }
