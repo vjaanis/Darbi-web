@@ -1,8 +1,9 @@
 # Izmaiņu vēsture
 
-## Pēc 1.1.1 — 27.10.2026
+## 1.2.1 — 27.10.2026
 
 - Pievienots `client.act` ar sākotnējo un noklusēto vērtību `1`.
+- Lietotnes versijas numurs atjaunināts uz `1.2.1`.
 - Administratoriem aktivizēta izvēlne **Klienti**, kur redzamību ievadē pārvalda ar izvēles rūtiņām.
 - Darba ievades atlase rāda tikai aktīvos klientus, saglabājot iepriekšējo darbu datus un iespēju nolasīt klientu pēc ID.
 - Izmaiņu saglabāšanu aizsargā administratora tiesības, POST un CSRF pārbaudes. VFP klientu imports esošo redzamības iestatījumu nepārraksta.

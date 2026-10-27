@@ -1,4 +1,4 @@
-# Darbi-web 1.1.1
+# Darbi-web 1.2.1
 
 PHP un JavaScript lietotne darbu ievadei un datu apmaiņai ar Visual FoxPro.
 
@@ -6,13 +6,13 @@ Administratora sadaļā **Klienti** (`?view=clients`) var ar izvēles rūtiņām
 
 Pirms šīs funkcijas izvietošanas citā serverī vienreiz izpildīt `migrations/2026-10-27-client-act.sql`, tad atjaunināt `api.php`, `index.php`, `app/clients.php`, `assets/clients.js` un `views/clients.php`. Migrācija pievieno lauku un sākotnēji visus klientus atzīmē kā aktīvus. Raspberry Pi migrācija un izvietošana pabeigta 27.10.2026; atkārtoti tur migrāciju nepalaist.
 
-Pašreizējā versija: **1.1.1**. Versiju nosaka `app/version.php`, tā redzama pieteikšanās un darba ievades lapās. Izmaiņas aprakstītas `CHANGELOG.md`; Git izlaiduma atzīme ir `v1.1.1`.
+Pašreizējā versija: **1.2.1**. Versiju nosaka `app/version.php`, tā redzama pieteikšanās, darba ievades un kontu lapās. Izmaiņas aprakstītas `CHANGELOG.md`; Git izlaiduma atzīme ir `v1.2.1`.
 
 ## Saglabātās kopijas statuss
 
 Repozitorija sākums ir 2026. gada 21.–22. oktobrī saglabātā avota kopija bez servera konfigurācijas un datiem. Tā nav pilna pašreizējā kompetence.lv servera rezerves kopija. Pirms izvietošanas salīdzināt ar aktuālajiem servera failiem.
 
-Iekļauti divi labojumi: klientu meklēšana bez `LIMIT 40`, lai tukšs meklēšanas lauks atgrieztu visus klientus, un mērvienību SQL parametra pārveidošana uz `utf8mb4`, kas pārbaudīta iepriekšējā servera pārcelšanā. Klientu labojuma darbība pašreizējā serverī vēl jāpārbauda.
+Klientu meklēšanai nav `LIMIT 40` ierobežojuma: tukšs meklēšanas lauks atgriež visus aktīvos klientus. Mērvienību SQL parametrs tiek pārveidots uz `utf8mb4`. Darbība pārbaudīta Raspberry Pi; šis izlaidums kompetence.lv vēl nav izvietots.
 
 ## Saturs
 
