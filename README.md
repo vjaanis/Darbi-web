@@ -1,8 +1,8 @@
-# Darbi-web 1.4.5
+# Darbi-web 1.4.6
 
 PHP un JavaScript lietotne darbu ievadei un datu apmaiņai ar Visual FoxPro.
 
-1.4.5 ir optimizācijas izlaidums (sk. `CHANGELOG.md`). Pārnešanai uz kompetence.lv kopēt `index.php`, `login.php`, `users.php`, `app/assets.php`, `app/clients.php`, `app/version.php`, `views/topbar.php`, `assets/style.css` un visus `assets/*.js`, kuros mainīti importi (`app.js`, `client-import.js`, `clients.js`, `exports.js`, `jobs.js`, `services.js`). Serverī dzēst `assets/users.css`, `assets/exports.css` un `assets/client-import.css`. Datubāzes izmaiņas nav vajadzīgas. Pārlūkam jāatbalsta import map (Chrome/Edge 89+, Firefox 108+, Safari 16.4+).
+1.4.6 apvieno 1.4.5 optimizācijas izlaidumu ar katalogu vērtību normalizāciju (sk. `CHANGELOG.md`). Pārnešanai uz kompetence.lv kopēt `index.php`, `login.php`, `users.php`, `app/assets.php`, `app/clients.php`, `app/catalog.php`, `app/version.php`, `views/topbar.php`, `assets/style.css` un visus `assets/*.js`, kuros mainīti importi (`app.js`, `client-import.js`, `clients.js`, `exports.js`, `jobs.js`, `services.js`). Serverī dzēst `assets/users.css`, `assets/exports.css` un `assets/client-import.css`. Datubāzes izmaiņas nav vajadzīgas. Pārlūkam jāatbalsta import map (Chrome/Edge 89+, Firefox 108+, Safari 16.4+).
 
 Statisko failu kešošana: faili tiek ielādēti ar `?v=<faila maiņas laiks>`, tāpēc serverī drīkst iestatīt ilgu `Cache-Control` (piem., `max-age=31536000, immutable`) `.css` un `.js` failiem. Raspberry Pi Apache pašlaik `.htaccess` neievēro (`AllowOverride None`); tur šo iestatījumu var ielikt Apache konfigurācijā.
 
@@ -18,7 +18,7 @@ Administratora sadaļā **Klienti** (`?view=clients`) var ar izvēles rūtiņām
 
 Pirms šīs funkcijas izvietošanas citā serverī vienreiz izpildīt `migrations/2026-10-27-client-act.sql`, tad atjaunināt `api.php`, `index.php`, `app/clients.php`, `assets/clients.js` un `views/clients.php`. Migrācija pievieno lauku un sākotnēji visus klientus atzīmē kā aktīvus. Raspberry Pi migrācija un izvietošana pabeigta 27.10.2026; atkārtoti tur migrāciju nepalaist.
 
-Pašreizējā versija: **1.4.5**. Versiju nosaka `app/version.php`, tā redzama pieteikšanās, darba ievades un kontu lapās. Izmaiņas aprakstītas `CHANGELOG.md`; Git izlaiduma atzīme ir `v1.4.5`.
+Pašreizējā versija: **1.4.6**. Versiju nosaka `app/version.php`, tā redzama pieteikšanās, darba ievades un kontu lapās. Izmaiņas aprakstītas `CHANGELOG.md`; Git izlaiduma atzīme ir `v1.4.6`.
 
 Soli pa solim instrukcija kompetence.lv atjaunināšanai: [kompetence-1.3.1.lv.md](docs/kompetence-1.3.1.lv.md).
 

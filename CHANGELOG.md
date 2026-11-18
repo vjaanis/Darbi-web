@@ -1,5 +1,13 @@
 # Izmaiņu vēsture
 
+## 1.4.6 — 18.11.2026
+
+- Apvienots 1.4.5 optimizācijas un uzturēšanas izlaidums ar katalogu normalizāciju.
+- Pakalpojuma veida, apakšiedaļas un mērvienības vērtības no `mnu_dati` tiek apgrieztas no liekām sākuma/beigu atstarpēm, pirms tās nonāk darba ievades izvēlnēs un validācijā.
+- Novērsta kļūda, kad katalogā saglabāta neredzama atstarpe izraisīja paziņojumu par klienta valodai neatbilstošu pakalpojumu.
+- Datubāzes shēmas izmaiņas nav vajadzīgas.
+- Lietotnes versija atjaunināta uz `1.4.6`.
+
 ## 1.4.5 — 18.11.2026
 
 - Darba formā summas priekšskatījumu rēķina tikai pārlūks (`assets/calculation.js` ir identisks `app/calculation.php`); vairs netiek sūtīts `calculate` pieprasījums pēc katra taustiņa. Saglabājot PHP summu pārrēķina kā līdz šim.
