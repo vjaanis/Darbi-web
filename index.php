@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/app/version.php';
 require_once __DIR__ . '/app/auth.php';
+require_once __DIR__ . '/app/assets.php';
 try {
     $user = Darbi\currentUser();
 } catch (Throwable $exception) {
@@ -16,6 +17,9 @@ header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 header('Referrer-Policy: no-referrer');
+// Vienīgais inline skripts ir import map; to atļauj ar vienreizēju nonce.
+$cspNonce = base64_encode(random_bytes(16));
+header("Content-Security-Policy: default-src 'none'; script-src 'self' 'nonce-$cspNonce'; style-src 'self'; connect-src 'self'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'");
 $csrf = Darbi\csrfToken();
 $overview = ($_GET['view'] ?? '') === 'jobs';
 $exports = ($_GET['view'] ?? '') === 'exports';
@@ -38,7 +42,6 @@ if ($exports && !$user['ir_admin']) {
     http_response_code(403);
     exit('Datu eksports pieejams tikai administratoram.');
 }
-$report = $overview || $exports || $clientImport || $clients || $services;
 ?>
 <!doctype html>
 <html lang="lv">
@@ -47,29 +50,15 @@ $report = $overview || $exports || $clientImport || $clients || $services;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="<?= htmlspecialchars($csrf, ENT_QUOTES, 'UTF-8') ?>">
     <title>Darbi · <?= $services ? 'Pakalpojumi' : ($clients ? 'Klienti' : ($clientImport ? 'Klientu imports' : ($exports ? 'Datu eksports' : ($overview ? 'Pārskats' : 'Darba forma')))) ?></title>
-    <link rel="stylesheet" href="assets/style.css?v=20261027-section-wrap">
-    <?php if ($exports): ?><link rel="stylesheet" href="assets/exports.css?v=20261021-export1"><?php endif; ?>
-    <?php if ($clientImport): ?><link rel="stylesheet" href="assets/client-import.css?v=20261022-import1"><?php endif; ?>
-</head>
+    <script type="importmap" nonce="<?= $cspNonce ?>"><?= Darbi\assetImportMap() ?></script>
+    <link rel="stylesheet" href="<?= Darbi\assetUrl('style.css') ?>"></head>
 <body>
-    <header class="topbar">
-        <a class="brand" href="./"><span class="brand-icon">D</span>Darbi <small>v<?= Darbi\APP_VERSION ?></small></a>
-        <nav class="main-menu" aria-label="Galvenā izvēlne">
-            <a class="menu-item <?= !$report ? 'active' : '' ?>" href="./">Jauns darbs</a>
-            <a class="menu-item <?= $overview ? 'active' : '' ?>" href="?view=jobs">Pārskats</a>
-            <?php if ($user['ir_admin']): ?><a class="menu-item <?= $exports ? 'active' : '' ?>" href="?view=exports">Datu eksports</a><?php endif; ?>
-            <?php if ($user['ir_admin']): ?><a class="menu-item <?= $clientImport ? 'active' : '' ?>" href="?view=client-import">Klientu imports</a><?php endif; ?>
-            <?php if ($user['ir_admin']): ?><a class="menu-item <?= $clients ? 'active' : '' ?>" href="?view=clients">Klienti</a><?php endif; ?>
-            <?php if ($user['ir_admin']): ?><a class="menu-item <?= $services ? 'active' : '' ?>" href="?view=services">Pakalpojumi</a><?php endif; ?>
-            <button class="menu-item" type="button" disabled title="Vēl nav pieejams">Iestatījumi</button>
-        </nav>
-        <?php if ($user['ir_admin']): ?><a class="menu-item" href="users.php">Konti</a><?php endif; ?>
-        <form method="post" action="logout.php">
-            <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf, ENT_QUOTES, 'UTF-8') ?>">
-            <button class="menu-item" type="submit">Izrakstīties</button>
-        </form>
-        <span class="date" id="today"></span>
-    </header>
+<?php
+    $activeView = $services ? 'services' : ($clients ? 'clients' : ($clientImport ? 'client-import' : ($exports ? 'exports' : ($overview ? 'jobs' : ''))));
+    $isAdmin = $user['ir_admin'];
+    $todayText = null; // datumu ieraksta JS
+    require __DIR__ . '/views/topbar.php';
+?>
 
     <main>
         <div class="page-heading">
@@ -98,6 +87,6 @@ $report = $overview || $exports || $clientImport || $clients || $services;
         <?php endif; ?>
     </main>
 
-    <script type="module" src="assets/<?= $services ? 'services' : ($clients ? 'clients' : ($clientImport ? 'client-import' : ($exports ? 'exports' : ($overview ? 'jobs' : 'app')))) ?>.js?v=20261027-job-copy"></script>
+    <script type="module" src="<?= Darbi\assetUrl(($services ? 'services' : ($clients ? 'clients' : ($clientImport ? 'client-import' : ($exports ? 'exports' : ($overview ? 'jobs' : 'app'))))) . '.js') ?>"></script>
 </body>
 </html>

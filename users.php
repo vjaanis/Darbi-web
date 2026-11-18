@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/app/database.php';
 require_once __DIR__ . '/app/version.php';
+require_once __DIR__ . '/app/assets.php';
 
 header('Content-Type: text/html; charset=utf-8');
 header('Cache-Control: no-store');
@@ -200,22 +201,26 @@ try {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Darbi · Lietotāju konti</title>
-    <link rel="stylesheet" href="assets/users.css?v=20261027-fonts2">
+    <link rel="stylesheet" href="<?= Darbi\assetUrl('style.css') ?>">
 </head>
-<body>
+<body class="users-page">
+<?php if ($adminId !== 0): ?>
+<?php
+    $activeView = 'users';
+    $isAdmin = true;
+    $csrf = $_SESSION['csrf'];
+    $todayText = (new DateTimeImmutable('now', new DateTimeZone('Europe/Riga')))->format('d.m.Y');
+    require __DIR__ . '/views/topbar.php';
+?>
+<?php endif; ?>
 <main>
     <h1>Lietotāju konti <small>v<?= Darbi\APP_VERSION ?></small></h1>
     <?php if ($message !== ''): ?><p class="notice" role="status"><?= h($message) ?></p><?php endif; ?>
 
     <?php if ($adminId !== 0): ?>
         <p>Administrators. Ievadi jaunu paroli, lai to mainītu; tukšs paroles lauks saglabā esošo.</p>
-        <form method="post" class="logout">
-            <input type="hidden" name="csrf" value="<?= h($_SESSION['csrf']) ?>">
-            <input type="hidden" name="action" value="logout">
-            <button type="submit">Izrakstīties</button>
-        </form>
         <?php foreach ($users as $user): ?>
-            <form method="post" class="card">
+            <form method="post" class="card account-card">
                 <h2><?= h($user['vards'] . ' ' . $user['uzvards']) ?> <small>(<?= h($user['lietotajvards']) ?>)</small></h2>
                 <p><?= (int) $user['aktivs'] === 1 ? 'Aktīvs' : 'Neaktīvs' ?> · <?= (int) $user['has_password'] === 1 ? 'Parole iestatīta' : 'Paroles nav' ?><?= (int) $user['ir_admin'] === 1 ? ' · Administrators' : '' ?></p>
                 <input type="hidden" name="csrf" value="<?= h($_SESSION['csrf']) ?>">
@@ -227,17 +232,17 @@ try {
                 <label>Jaunā parole <input name="password" type="password" autocomplete="new-password" minlength="12"></label>
                 <label>Atkārtoti <input name="confirmation" type="password" autocomplete="new-password" minlength="12"></label>
                 <label class="check"><input name="active" type="checkbox" <?= (int) $user['aktivs'] === 1 ? 'checked' : '' ?>> Aktīvs</label>
-                <button type="submit">Saglabāt kontu</button>
+                <button class="primary" type="submit">Saglabāt kontu</button>
             </form>
         <?php endforeach; ?>
     <?php else: ?>
         <p>Administratora pieteikšanās.</p>
-        <form method="post" class="card">
+        <form method="post" class="card account-card">
             <input type="hidden" name="csrf" value="<?= h($_SESSION['csrf']) ?>">
             <input type="hidden" name="action" value="login">
             <label>Lietotājvārds <input name="username" autocomplete="username" required></label>
             <label>Parole <input name="password" type="password" autocomplete="current-password" required></label>
-            <button type="submit">Pieteikties</button>
+            <button class="primary" type="submit">Pieteikties</button>
         </form>
     <?php endif; ?>
 </main>

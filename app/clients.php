@@ -3,9 +3,12 @@ declare(strict_types=1);
 
 namespace Darbi;
 
+/** Darba formai vajadzīgie klienta lauki; bankas un kontaktu dati pārlūkam netiek sūtīti. */
+const CLIENT_FORM_COLUMNS = 'id, name, c_code, lng, address, b_acc';
+
 function searchClients(string $search): array
 {
-    return fetchRows("SELECT * FROM client WHERE act = 1 AND name LIKE ? ORDER BY name, id", [
+    return fetchRows("SELECT " . CLIENT_FORM_COLUMNS . " FROM client WHERE act = 1 AND name LIKE ? ORDER BY name, id", [
         "%" . $search . "%",
     ]);
 }
@@ -39,7 +42,7 @@ function setClientActive(array $input, array $user): array
 
 function findClient(int $id): array
 {
-    $rows = fetchRows("SELECT * FROM client WHERE id = ?", [$id]);
+    $rows = fetchRows("SELECT " . CLIENT_FORM_COLUMNS . " FROM client WHERE id = ?", [$id]);
 
     if (!$rows) {
         throw new \InvalidArgumentException("Izvēlies klientu no saraksta.");

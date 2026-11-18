@@ -1,9 +1,9 @@
 import { initializeHistoryChoice } from "./history-choice.js";
-import { initializeSectionChoice } from "./section-choice.js?v=20261027-section2";
-import { copyJobValues } from "./job-copy.js?v=20261027-copy";
-import { formatDate, parseDate, initializeDateFields } from './dates.js?v=20261021-calendar';
-import { request } from "./api.js?v=20261021-csrf";
-import { calculateAmount, unitDivisor } from "./calculation.js?v=20261021-quantity";
+import { initializeSectionChoice } from "./section-choice.js";
+import { copyJobValues } from "./job-copy.js";
+import { formatDate, parseDate, initializeDateFields } from './dates.js';
+import { request } from "./api.js";
+import { calculateAmount, unitDivisor } from "./calculation.js";
 import {
     element,
     showNotice,
@@ -21,13 +21,11 @@ const state = {
     clientRequest: 0,
     typeRequest: 0,
     sectionRequest: 0,
-    calculationRequest: 0,
     searchResults: new Map(),
 };
 let syncSectionChoice = () => {};
 
 let searchTimer;
-let calculationTimer;
 let editing = null;
 let dirty = false;
 let loadingEdit = false;
@@ -51,33 +49,14 @@ function showAmount(amount) {
 
 function updateAmountPreview() {
     element("daudz").max = unitDivisor(element("mervien").value) === 1800 ? "100000" : "9999.99";
-    clearTimeout(calculationTimer);
-    const version = ++state.calculationRequest;
-    const input = amountInput();
 
+    // calculation.js ir identisks app/calculation.php; PHP summu pārrēķina saglabājot.
     try {
-        showAmount(calculateAmount(input));
+        showAmount(calculateAmount(amountInput()));
     } catch {
         element("summary-total").textContent = "—";
         element("calculation-note").textContent = "Pārbaudi daudzumu, cenu un atlaidi.";
-        return;
     }
-
-    // Pārlūks rāda tūlītēju priekšskatījumu; to apstiprina PHP aprēķins.
-    calculationTimer = setTimeout(async () => {
-        try {
-            const amount = await request("calculate", {}, input);
-
-            if (version === state.calculationRequest) {
-                showAmount(amount);
-            }
-        } catch {
-            if (version === state.calculationRequest) {
-                element("calculation-note").textContent =
-                    "Priekšskatījums. PHP pārrēķinās summu saglabājot.";
-            }
-        }
-    }, 250);
 }
 
 /** Klients ir pirmais aktīvais ievades solis. */
@@ -466,12 +445,7 @@ async function initializePage() {
     element("today").textContent = formatDate(rigaToday());
 
     element("sak_dat").value = formatDate(rigaToday());
-    const status = await request("status");
-
-    if (!status.ready) {
-        throw new Error("Datubāzes savienojums nav pieejams.");
-    }
-
+    // Atsevišķa "status" pārbaude nav vajadzīga: DB kļūdu parāda pirmais īstais pieprasījums.
     initializeEvents();
     element('g_dat').disabled = true;
     setClientReady(false);

@@ -1,4 +1,4 @@
-import { request } from './api.js?v=20261021-csrf';
+import { request } from './api.js';
 import { element, showNotice, rigaToday } from './ui.js';
 
 let clients = [];

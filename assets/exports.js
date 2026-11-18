@@ -1,6 +1,6 @@
-import { request } from './api.js?v=20261021-csrf';
+import { request } from './api.js';
 import { element, formatMoney, showNotice, rigaToday } from './ui.js';
-import { formatDate } from './dates.js?v=20261021-calendar';
+import { formatDate } from './dates.js';
 
 const selected = new Map();
 let page = 1;

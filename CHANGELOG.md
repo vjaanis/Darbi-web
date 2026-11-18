@@ -1,5 +1,17 @@
 # Izmaiņu vēsture
 
+## 1.4.5 — 18.11.2026
+
+- Darba formā summas priekšskatījumu rēķina tikai pārlūks (`assets/calculation.js` ir identisks `app/calculation.php`); vairs netiek sūtīts `calculate` pieprasījums pēc katra taustiņa. Saglabājot PHP summu pārrēķina kā līdz šim.
+- Darba formas ielādē noņemta atsevišķā `status` pārbaude (4 `COUNT(*)` vaicājumi); datubāzes kļūdu parāda pirmais īstais pieprasījums.
+- Klientu meklēšana un `findClient` atgriež tikai darba formai vajadzīgos laukus `id, name, c_code, lng, address, b_acc`; bankas, kontaktu un e-pasta dati pārlūkam vairs netiek sūtīti.
+- Statisko failu versijas nosaka faila maiņas laiks (`app/assets.php`); JS moduļu savstarpējie importi versiju saņem caur import map. Ar roku rakstītās `?v=` virknes noņemtas.
+- `index.php` sūta `Content-Security-Policy` galveni; vienīgo inline skriptu (import map) atļauj vienreizējs nonce.
+- Galvenā izvēlne pārnesta uz kopīgu `views/topbar.php`; tā redzama arī kontu lapā `users.php` (administratoram). Atsevišķā kontu lapas poga **Izrakstīties** aizstāta ar izvēlnes pogu.
+- CSS apvienots: `assets/exports.css`, `assets/client-import.css` un `assets/users.css` iekļauti `assets/style.css`; izņemts nelietotā jaunā klienta dialoga stils. Kontu lapa izmanto kopīgo stilu (pamatteksts 16 px). `assets/login.css` paliek atsevišķs.
+- Pārbaudīts Raspberry Pi: darba forma (klients → veids → apakšiedaļa → mērvienība, summa), labošana, pārskats, datu eksports, klientu imports, klienti, pakalpojumi, konti; CSP pārkāpumu nav. Datubāzes izmaiņas nav vajadzīgas.
+- Lietotnes versija atjaunināta uz `1.4.5`.
+
 ## 1.4.3 — 27.10.2026
 
 - Darbu pārskatā blakus **Labot** un **Dzēst** pievienota darbība **Kopēt**.

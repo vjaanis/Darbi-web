@@ -416,68 +416,6 @@ button:disabled:not(.menu-item) {
     color: #a44237;
 }
 
-/* Jauna klienta logs vienmēr ir centrēts ekrānā. */
-dialog {
-    position: fixed;
-    inset: 0;
-    margin: auto;
-    width: min(840px, calc(100vw - 32px));
-    max-height: calc(100dvh - 40px);
-    overflow: auto;
-    border: 0;
-    border-radius: 10px;
-    padding: 20px;
-    color: var(--ink);
-    box-shadow: 0 20px 70px #10283c44;
-}
-dialog::backdrop {
-    background: #142b4177;
-}
-.dialog-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-.dialog-heading h2 {
-    font-size: 22px;
-    margin-top: 4px;
-}
-.eyebrow {
-    color: var(--muted);
-    font-size: 12px;
-    letter-spacing: 1px;
-}
-.close-button {
-    width: 28px;
-    height: 28px;
-    border: 0;
-    border-radius: 50%;
-    background: #eef2f7;
-    color: #637488;
-    font-size: 24px;
-}
-.plain-fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    min-width: 0;
-}
-dialog .plain-fieldset > .grid:first-child {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-dialog .field {
-    margin-bottom: 0;
-}
-dialog .plain-fieldset > .grid + .grid {
-    margin-top: 12px;
-}
-#client-error {
-    margin: 10px 0;
-    color: #ad4438;
-    font-size: 14px;
-}
-
 @media (max-width: 1100px) {
     .topbar {
         padding: 8px 16px;
@@ -558,9 +496,6 @@ dialog .plain-fieldset > .grid + .grid {
     .completion-field {
         grid-column: 1 / -1;
     }
-    dialog .plain-fieldset > .grid:first-child {
-        grid-template-columns: 1fr 1fr;
-    }
 }
 
 /* Pārējās iedaļas piedalās režģī, bet sākumā ir neaktīvas. */
@@ -623,3 +558,36 @@ select.history-options {
 .jobs-table td:nth-child(5) { min-width: 220px; white-space: pre-wrap; overflow-wrap: anywhere; }
 .jobs-table td:last-child { white-space: nowrap; }
 .danger { color: #a32b30; }
+
+/* Datu eksports */
+.export-filters { display: flex; flex-wrap: wrap; gap: 14px; align-items: end; }
+.export-filters label { display: grid; gap: 6px; min-width: 190px; }
+.export-filters select, .export-filters input { width: 100%; padding: 9px; border: 1px solid var(--line); border-radius: 5px; background: white; }
+.export-search { flex: 1; }
+.export-history { margin-top: 22px; }
+.exports-table input[type=checkbox] { width: 18px; height: 18px; cursor: pointer; }
+.exports-table td:nth-child(5) { min-width: 140px; }
+.exports-table td:nth-child(6) { min-width: 240px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.exports-table td:last-child { white-space: normal; min-width: 180px; }
+.exports-table tr:has(input:checked) { background: #edf3ff; }
+.export-job-numbers { max-width: 220px; overflow-wrap: anywhere; }
+
+/* Klientu imports */
+.import-links { display: flex; flex-wrap: wrap; gap: 20px; }
+.import-counts { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.import-counts span { background: #edf3ff; border-radius: 5px; padding: 12px 16px; }
+.import-history { margin-top: 24px; }
+#client-import-preview { margin-top: 26px; padding-top: 12px; border-top: 1px solid var(--line); }
+#client-import-file { max-width: 100%; }
+
+/* Lietotāju konti (users.php) */
+.users-page main { max-width: 760px; }
+.users-page h1 small { color: var(--muted); font-size: 15px; font-weight: normal; }
+.users-page main > p { line-height: 1.5; }
+.account-card { display: grid; gap: 12px; margin: 12px 0; }
+.account-card label { display: grid; gap: 4px; margin: 0; }
+.account-card label.check { display: flex; gap: 6px; }
+.account-card h2 small { color: var(--muted); font-weight: normal; }
+.account-card p { margin: 0; color: var(--muted); font-size: 14px; }
+.account-card .primary { justify-self: start; }
+.notice { margin-bottom: 12px; padding: 8px 12px; border: 1px solid #bddfcf; border-radius: 5px; background: #eaf7f0; color: #286b4b; font-size: 15px; }

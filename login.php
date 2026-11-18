@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/app/auth.php';
 require_once __DIR__ . '/app/version.php';
+require_once __DIR__ . '/app/assets.php';
 
 use function Darbi\clearUserIdentity;
 use function Darbi\csrfToken;
@@ -109,7 +110,7 @@ try {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Darbi · Pieteikšanās</title>
-    <link rel="stylesheet" href="assets/login.css?v=20261027-login">
+    <link rel="stylesheet" href="<?= Darbi\assetUrl('login.css') ?>">
 </head>
 <body>
 <main class="login-shell">
