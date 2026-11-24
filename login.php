@@ -5,6 +5,7 @@ require_once __DIR__ . '/app/auth.php';
 require_once __DIR__ . '/app/version.php';
 require_once __DIR__ . '/app/assets.php';
 
+use function Darbi\authenticateUser;
 use function Darbi\clearUserIdentity;
 use function Darbi\csrfToken;
 use function Darbi\currentUser;
@@ -76,15 +77,8 @@ try {
                     if ($errorMessage === '') {
                         $db->prepare('UPDATE lietotaji SET neveiksmigi_meginajumi = 0, blokeets_lidz = NULL WHERE darbinieks_id = ?')
                             ->execute([$account['darbinieks_id']]);
-                        session_regenerate_id(true);
                         clearUserIdentity();
-                        $_SESSION['user_id'] = (int) $account['darbinieks_id'];
-                        if ((int) $account['ir_admin'] === 1) {
-                            $_SESSION['admin_id'] = (int) $account['darbinieks_id'];
-                        }
-                        $_SESSION['password_fingerprint'] = hash('sha256', $finalHash);
-                        $_SESSION['last_seen'] = time();
-                        $_SESSION['csrf'] = bin2hex(random_bytes(32));
+                        authenticateUser((int) $account['darbinieks_id'], $finalHash, true);
                         header('Location: index.php', true, 303);
                         exit;
                     }

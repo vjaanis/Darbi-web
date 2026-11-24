@@ -1,8 +1,13 @@
 # Izmaiņu vēsture
 
+## 1.4.8 — 24.11.2026
+
+- Pieteikšanās identitāte un CSRF marķieris tiek glabāti drošās, parakstītās pārlūka sīkdatnēs. Tas novērš hostinga nestabilās PHP sesiju glabātuves radīto kļūdu “Nederīgs pieprasījums”, neveicot datubāzes shēmas izmaiņas.
+- Paraksts tiek pārbaudīts ar konkrētā lietotāja paroles jaukumu; paroles maiņa nekavējoties padara iepriekšējo pieteikšanās sīkdatni nederīgu.
+
 ## 1.4.7 — 24.11.2026
 
-- Pieteikšanās sesijas tiek glabātas Darbi datubāzē, lai hostinga PHP sesiju glabātuves kļūme nevarētu izraisīt kļūdu “Nederīgs pieprasījums”.
+- Mēģinājums izmantot datubāzes sesiju apstrādi hostinga PHP versijā tika atsaukts; tā netiek izvietota.
 
 ## 1.4.6 — 18.11.2026
 
