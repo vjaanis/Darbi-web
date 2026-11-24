@@ -5,6 +5,76 @@ namespace Darbi;
 
 require_once __DIR__ . '/database.php';
 
+final class DatabaseSessionHandler implements \SessionHandlerInterface
+{
+    public function open(string $path, string $name): bool
+    {
+        return true;
+    }
+
+    public function close(): bool
+    {
+        return true;
+    }
+
+    public function read(string $id): string
+    {
+        $query = database()->prepare(
+            'SELECT saturs FROM darba_web_sesijas WHERE sesijas_id = ? AND beidzas > NOW()'
+        );
+        $query->execute([$id]);
+        $value = $query->fetchColumn();
+
+        return is_string($value) ? $value : '';
+    }
+
+    public function write(string $id, string $data): bool
+    {
+        $query = database()->prepare(
+            'INSERT INTO darba_web_sesijas (sesijas_id, saturs, beidzas) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 2 HOUR))
+             ON DUPLICATE KEY UPDATE saturs = VALUES(saturs), beidzas = VALUES(beidzas)'
+        );
+
+        return $query->execute([$id, $data]);
+    }
+
+    public function destroy(string $id): bool
+    {
+        return database()->prepare('DELETE FROM darba_web_sesijas WHERE sesijas_id = ?')->execute([$id]);
+    }
+
+    public function gc(int $maxLifetime): int|false
+    {
+        $query = database()->prepare('DELETE FROM darba_web_sesijas WHERE beidzas <= NOW()');
+        $query->execute();
+
+        return $query->rowCount();
+    }
+}
+
+function databaseSessionStorageIsAvailable(): bool
+{
+    static $available = null;
+    if ($available !== null) {
+        return $available;
+    }
+
+    try {
+        database()->exec(
+            'CREATE TABLE IF NOT EXISTS darba_web_sesijas (
+                sesijas_id VARCHAR(128) NOT NULL PRIMARY KEY,
+                saturs MEDIUMBLOB NOT NULL,
+                beidzas DATETIME NOT NULL,
+                KEY idx_darba_web_sesijas_beidzas (beidzas)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci'
+        );
+        return $available = true;
+    } catch (\Throwable $exception) {
+        error_log('Darbi session storage: ' . get_class($exception));
+        return $available = false;
+    }
+}
+
 function startUserSession(): void
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
@@ -12,6 +82,9 @@ function startUserSession(): void
     }
     ini_set('session.use_strict_mode', '1');
     session_name('darbi_users');
+    if (databaseSessionStorageIsAvailable()) {
+        session_set_save_handler(new DatabaseSessionHandler(), true);
+    }
     $path = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/') . '/';
     session_set_cookie_params([
         'lifetime' => 0,

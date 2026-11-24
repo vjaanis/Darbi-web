@@ -1,5 +1,9 @@
 # Izmaiņu vēsture
 
+## 1.4.7 — 24.11.2026
+
+- Pieteikšanās sesijas tiek glabātas Darbi datubāzē, lai hostinga PHP sesiju glabātuves kļūme nevarētu izraisīt kļūdu “Nederīgs pieprasījums”.
+
 ## 1.4.6 — 18.11.2026
 
 - Apvienots 1.4.5 optimizācijas un uzturēšanas izlaidums ar katalogu normalizāciju.
